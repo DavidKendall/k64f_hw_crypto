@@ -47,3 +47,8 @@ Ciphertext: 18 b0 6c c5 eb bf 0e 9e 23 68 27 55 ed fd eb ca
 AES Decrypt
 Plaintext : 43 6f 6e 66 69 64 65 6e 74 69 61 6c 20 54 58 00 
 ```
+
+## More information
+
+See the files in the `docs` directory
+
