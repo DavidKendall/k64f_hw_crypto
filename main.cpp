@@ -29,7 +29,7 @@ int main() {
 
     counterInit();
     pc.printf("Time AES functions\n");
-    pc.printf("MBED TLS Set Key\n");
+    pc.printf("MBED TLS Set Enc Key\n");
     mbedtls_aes_init(&aes_ctx);
     ret = mbedtls_aes_setkey_enc(&aes_ctx, key, 128);
     for (i = 0; i < 4; i += 1) {
@@ -69,6 +69,13 @@ int main() {
     pc.printf("\nCiphertext: ");
     printBytesAsHex(ciphertext, 16);
     pc.printf("\n");
+    pc.printf("MBED TLS Set Dec Key\n");
+    mbedtls_aes_init(&aes_ctx);
+    ret = mbedtls_aes_setkey_dec(&aes_ctx, key, 128);
+    for (i = 0; i < 4; i += 1) {
+        printBytesAsHex(&key_schedule[i * 44], 44);
+        pc.printf("\n");
+    }
     pc.printf("AES Decrypt\n");
     /* Reset all statistics
      */
