@@ -19,6 +19,7 @@ and ARM mbed OS-5.
 1. Compile the program and flash the board
 
      ```sh
+     $ cd k64f_hw_crypto
      $ mbed compile -t GCC_ARM -m K64F -f
      ```
 
