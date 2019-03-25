@@ -79,12 +79,12 @@ DEC
 ## The program without hardware acceleration
 
 To build a version of the program without hardware acceleration, checkout the
-branch `no_hw_accel`, copy `targets_no_hw_accel.json` to `mbed-os/targets/targets.json`,
+branch `no_hw_accel`, copy `targets.json` to `mbed-os/targets`,
 and compile as usual:
 
 ```sh
 $ git checkout no_hw_accel
-$ cp targets_no_hw_accel.json mbed-os/targets/targets.json
+$ cp targets.json mbed-os/targets
 $ mbed compile -t GCC_ARM -m K64F -f
 ```
 

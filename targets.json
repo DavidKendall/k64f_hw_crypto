@@ -1455,7 +1455,7 @@
             "PSA"
         ],
         "is_disk_virtual": true,
-        "macros": ["CPU_MK64FN1M0VMD12", "FSL_RTOS_MBED", "MBEDTLS_PSA_CRYPTO_C", "MBEDTLS_CONFIG_HW_SUPPORT"],
+        "macros": ["CPU_MK64FN1M0VMD12", "FSL_RTOS_MBED", "MBEDTLS_PSA_CRYPTO_C"],
         "inherits": ["Target"],
         "detect_code": ["0240"],
         "device_has": [
