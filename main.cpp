@@ -1,4 +1,5 @@
 #include <mbed.h>
+#include <LoRaMacCrypto.h>
 #include <stdint.h>
 #include "counter.h"
 
@@ -14,6 +15,10 @@ unsigned char decryptedtext[16] = "               ";
 
 mbedtls_aes_context aes_ctx;
 unsigned char *key_schedule = (unsigned char *)&aes_ctx.buf;
+LoRaMacCrypto lmc;
+uint8_t buffer[256];
+uint32_t mic[4];
+unsigned char *mic_bytes = (unsigned char *)&mic;
 
 void printBytesAsHex(const unsigned char *bytes, int len);
 void displayStats(uint32_t, uint32_t, uint32_t, uint64_t);
@@ -105,6 +110,19 @@ int main() {
     meanTime = totalTime / N_ITERATIONS;
     displayStats(minTime, meanTime, maxTime, totalTime);
     pc.printf("Plaintext : ");
+    printBytesAsHex(decryptedtext, 16);
+    pc.printf("\n");
+    pc.printf("LoRaMacCrypto Functions\n");
+    pc.printf("MIC\n");
+    lmc.compute_mic(plaintext, 16, key, 128, 0xa5a5a5, 0, 1, mic);
+    printBytesAsHex(mic_bytes, 16);
+    pc.printf("\n");
+    pc.printf("ENC\n");
+    lmc.encrypt_payload(plaintext, 16, key, 128, 0xa5a5a5a5, 0, 1, ciphertext);
+    printBytesAsHex(ciphertext, 16);
+    pc.printf("\n");
+    pc.printf("DEC\n");
+    lmc.decrypt_payload(ciphertext, 16, key, 128, 0xa5a5a5a5, 0, 1, decryptedtext);
     printBytesAsHex(decryptedtext, 16);
     pc.printf("\n");
     return 0;
